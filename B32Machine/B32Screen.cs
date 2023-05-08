@@ -30,14 +30,25 @@ namespace B32Machine
             InitializeComponent();
             this.m_ScreenMemory = new byte[4000];
             this.m_ScreenMemoryLocation = 0xA000;
-            for (int i = 0; i < 4000; i += 2)
-            {
-                this.m_ScreenMemory[i + 1] = 7; //produce gray text on the black background
-                this.m_ScreenMemory[i] = 32;
-            }
-        }
+			//for (int i = 0; i < 4000; i += 2)
+			//{
+			// m_ScreenMemory[i] = 32;
+			// m_ScreenMemory[i + 1] = 7;
+			//}
+			Reset();
+		}
 
-        private void B32Screen_Load(object sender, EventArgs e)
+		public void Reset()
+		{
+			for (int i = 0; i < 4000; i += 2)
+			{
+				m_ScreenMemory[i] = 32;
+				m_ScreenMemory[i + 1] = 7;
+			}
+			Refresh();
+		}
+
+		private void B32Screen_Load(object sender, EventArgs e)
         {
 
         }
